@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="me.airtext.services.IMessageService">
+    <resultMap type="me.airtext.models.Message" id="messageResultMap">
+        <id property="id" column="id"/>
+        <result property="secret" column="secret"/>
+        <result property="message" column="message"/>
+        <result property="createTime" column="create_time"/>
+        <result property="sourceIp" column="source_ip"/>
+    </resultMap>
+
+    <select id="getSecretMessagesInRange" parameterType="java.lang.String" resultMap="messageResultMap">
+        SELECT
+         id,secret,message,create_time,source_ip
+        FROM
+          message_board
+        WHERE
+          secret=#{secret}
+    </select>
+
+    <insert id="insertSecretMessage" parameterType="me.airtext.models.Message">
+        INSERT INTO message_board
+        (secret, message, create_time, source_ip)
+        VALUES
+        (#{secret},#{message},now(),#{sourceIp})
+    </insert>
+</mapper>

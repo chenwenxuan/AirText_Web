@@ -1,0 +1,1 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %><html><head>    <style type="text/css">        input{display: block}    </style></head><body><h2>暗号</h2></body><form action="/entry/start-chat" method="post">    <input type="text" name="secret" placeholder="请输入暗号"/>    <input type="submit" value="获取消息"/></form></html>
