@@ -1,10 +1,10 @@
-USE airtext;
+USE app_airtext;
 
 CREATE TABLE IF NOT EXISTS `message_board` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
   `secret` VARCHAR(32) NOT NULL COMMENT '暗号',
   `message` VARCHAR(20000) NOT NULL COMMENT '消息',
-  `time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '消息发出时间',
+  `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '消息发出时间',
   `source_ip` VARCHAR(64) NOT NULL DEFAULT '0.0.0.0' COMMENT '消息来源IP',
   PRIMARY KEY (`id`),
   INDEX `idx_secret` (`secret`)
@@ -15,5 +15,5 @@ CREATE TABLE IF NOT EXISTS `secrets` (
   `secret` VARCHAR(32) NOT NULL COMMENT '暗号',
   `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '暗号创建时间',
   PRIMARY KEY (`id`),
-  INDEX `idx_secret` (`secret`)
+  UNIQUE KEY `uniq_secret` (`secret`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='暗号表';

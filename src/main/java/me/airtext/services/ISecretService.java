@@ -8,4 +8,5 @@ package me.airtext.services;
  */
 public interface ISecretService {
     void updateSecret(String secret);
+    boolean secretExists(String secret);
 }

@@ -18,6 +18,12 @@ public class Message {
     public Message() {
     }
 
+    public Message(String secret, String message, String sourceIp) {
+        this.secret = secret;
+        this.message = message;
+        this.sourceIp = sourceIp;
+    }
+
     public Integer getId() {
         return id;
     }

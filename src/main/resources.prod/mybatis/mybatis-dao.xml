@@ -9,7 +9,7 @@
         <property name="ignoreResourceNotFound" value="true"/>
         <property name="locations">
             <list>
-                <value>classpath:/datasource.properties</value>
+                <value>classpath*:/datasource-sinaapp.properties</value>
             </list>
         </property>
     </bean>
@@ -32,15 +32,5 @@
         <property name="basePackage" value="me.airtext.services"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
-
-    <!--<bean class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-        <!--<property name="mapperInterface" value="me.airtext.services.ISecretService"/>-->
-        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
-    <!--</bean>-->
-
-    <!--<bean class="org.mybatis.spring.mapper.MapperFactoryBean">-->
-        <!--<property name="mapperInterface" value="me.airtext.services.IMessageService"/>-->
-        <!--<property name="sqlSessionFactory" ref="sqlSessionFactory"/>-->
-    <!--</bean>-->
 
 </beans>

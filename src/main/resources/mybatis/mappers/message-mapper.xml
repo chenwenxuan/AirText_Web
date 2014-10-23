@@ -18,10 +18,11 @@
           secret=#{secret}
     </select>
 
-    <insert id="insertSecretMessage" parameterType="me.airtext.models.Message">
+    <insert id="insertMessage" parameterType="me.airtext.models.Message">
         INSERT INTO message_board
         (secret, message, create_time, source_ip)
         VALUES
         (#{secret},#{message},now(),#{sourceIp})
     </insert>
+
 </mapper>
