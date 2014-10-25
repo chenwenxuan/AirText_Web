@@ -7,14 +7,15 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<style type="text/css">
-    input[type=text]{visibility: hidden;display: block}
-</style>
 <head>
+    <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <style>
+        input[type=text]{visibility: hidden;display: block}
+    </style>
     <title></title>
 </head>
 <body>
-    <h1><a href="http://airtext.me">暗号</a></h1>
+    <h1><a href="/">暗号</a></h1>
     <form action="/airtext/start-chat" method="post">
         <input type="text" name="secret" value="${secret}"/>
         <input type="submit" value="创建暗号【${secret}】"/>

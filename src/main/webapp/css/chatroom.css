@@ -1,0 +1,52 @@
+.message-head{
+    margin-bottom: 0.4em;
+}
+
+.message-head span {
+    color: #999999;
+    display: inline-block;
+    font-size: 13px;
+}
+
+span.message-id {
+    width: 8%;
+}
+span.message-time {
+    text-align: left;
+    width: 28%;
+    position: relative;
+}
+span.message-ip {
+    text-align: left;
+    width: 16%;
+}
+
+div.message-body {
+    font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
+    line-height: 1.7;
+    font-size: 13px;
+    padding: 1em;
+    padding-right: 0;
+    margin: 0;
+    margin-bottom: 0.8em;
+    color: #222;
+    word-wrap: break-word;
+}
+
+textarea#message {
+    width: 100%;
+    display: block;
+    border-radius: 0.4em;
+    margin-bottom: 1em;
+}
+
+input[type="submit"] {
+    display: block;
+    font-size: 20px;
+    width: 6em;
+    height: 2em;
+    color: white;
+    background-color: blue;
+    border: 0px;
+    border-radius: 0.2em;
+}

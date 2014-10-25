@@ -1,0 +1,25 @@
+html {
+    width: 100%;
+}
+
+body {
+    width: 60%;
+    margin: auto;
+    padding-top: 2em;
+    padding-bottom: 4em;
+}
+
+h1 {
+    color: #999;
+    font-size: 4em;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #000000;
+    text-align: center;
+    width: 100%;
+}
+
+a {
+    cursor: auto;
+    color:  #999;
+    text-decoration: none;
+}
