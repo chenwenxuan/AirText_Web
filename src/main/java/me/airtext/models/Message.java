@@ -3,6 +3,7 @@
  */
 package me.airtext.models;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -13,6 +14,7 @@ public class Message {
     private String secret;
     private String message;
     private Date createTime;
+    private String createTimeString;
     private String sourceIp;
 
     public Message() {
@@ -54,6 +56,13 @@ public class Message {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String timeString = formatter.format(createTime);
+        this.createTimeString = timeString;
+    }
+
+    public String getCreateTimeString() {
+        return createTimeString;
     }
 
     public String getSourceIp() {
