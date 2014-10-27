@@ -9,6 +9,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../../css/main.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/startchat.css"/>
     <style>
         input[type=text]{visibility: hidden;display: block}
     </style>
@@ -18,7 +19,7 @@
     <h1><a href="/">暗号</a></h1>
     <form action="/airtext/start-chat" method="post">
         <input type="text" name="secret" value="${secret}"/>
-        <input type="submit" value="创建暗号【${secret}】"/>
+        <input type="submit" value="创建暗号 ${secret}"/>
     </form>
 </body>
 </html>
