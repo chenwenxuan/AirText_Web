@@ -17,7 +17,7 @@
 </head>
 <body>
     <h1><a href="/">暗号</a></h1>
-    <form action="/airtext/start-chat" method="post">
+    <form action="/airtext/create-secret" method="post">
         <input type="text" name="secret" value="${secret}"/>
         <input type="submit" value="创建暗号 ${secret}"/>
     </form>

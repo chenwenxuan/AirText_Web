@@ -12,8 +12,8 @@ div#message-frame{
     margin-top: 2em;
     padding-top: 2em;
     padding-bottom: 1em;
-    width: 60%;
-    min-width: 840px;
+    width: 80%;
+    min-width: 1298px;
     background-color: #353535;
     border-radius: 4px;
     box-shadow: 0 0 8px #fff;
@@ -37,22 +37,22 @@ span.message-time {
 
 span.message-body {
     display: inline-block;
-    width: 72%;
+    width: 64%;
     font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
     line-height: 1.7;
     font-size: 13px;
     padding-right: 0;
     padding-left: 1em;
     margin-bottom: 0.8em;
-    color: #eee;
+    color: #bbb;
     word-wrap: break-word;
     border-left: 2px solid #0cf;
 }
 
 form{
-    width: 60%;
+    width: 80%;
+    min-width: 1298px;
     margin: auto;
-    min-width: 840px;
     margin-bottom: 5em;
 }
 
@@ -78,4 +78,33 @@ input[type="submit"] {
 
 pre{
     margin: 0;
+}
+
+button.copy-button{
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    left: 50px;
+    color: #0cf;
+    background-color: #444;
+    border: 1px solid #0cf;
+    border-radius: 2px;
+    -webkit-appearance: none;
+    width: 60px;
+    height: 24px;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+button.copy-button.hover{
+    opacity: 1.0;
+}
+
+button.copy-button.active{
+    opacity: 0.4;
+}
+
+a{
+    text-decoration: none;
+    color: #ffffff;
 }

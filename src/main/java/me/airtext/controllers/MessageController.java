@@ -38,16 +38,27 @@ public class MessageController {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/start-chat", method = RequestMethod.POST)
-    public String startChat(@RequestParam(value = "secret",required = true) String secret) throws Exception{
+    @RequestMapping("/create-secret")
+    public String createSecret(@RequestParam(value = "secret",required = false) String secret){
         secretService.updateSecret(secret);
         return "redirect:/airtext/chat/"+secret;
+    }
+
+    @RequestMapping(value = "/start-chat", method = RequestMethod.POST)
+    public String startChat(@RequestParam(value = "secret",required = true) String secret, ModelMap modelMap) throws Exception{
+        if (secretService.secretExists(secret)){
+            return "redirect:/airtext/chat/"+secret;
+        }
+        else {
+            modelMap.addAttribute("secret",secret);
+            return "startchat";
+        }
     }
 
     @RequestMapping(value = "/chat/{secret}")
     public String enterChat(HttpServletRequest request, @PathVariable(value = "secret") String secret,@RequestParam(value = "begin",required = false) Integer begin,@RequestParam(value = "length",required = false) Integer length, ModelMap modelMap, HttpServletResponse httpServletResponse){
         if (secretService.secretExists(secret)) {
-            Cookie cookie = CookieUtils.getCookeiWithName(request, "secret");
+            Cookie cookie = CookieUtils.getCookieWithName(request, "secret");
             if (cookie == null){
                 cookie = new Cookie("secret",secret);
                 cookie.setPath("/airtext");
