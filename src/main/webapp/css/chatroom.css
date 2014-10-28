@@ -47,6 +47,8 @@ span.message-body {
     color: #bbb;
     word-wrap: break-word;
     border-left: 2px solid #0cf;
+    word-break: break-all;
+    overflow: auto;
 }
 
 form{
@@ -106,5 +108,17 @@ button.copy-button.active{
 
 a{
     text-decoration: none;
-    color: #ffffff;
+    color: #ffff00;
+}
+
+span.code-keywords{
+    color: white;
+}
+
+span.code-brackets{
+    color: hotpink;
+}
+
+span.code-strings{
+    color: red;
 }
