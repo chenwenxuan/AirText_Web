@@ -80,6 +80,7 @@ input[type="submit"] {
 
 pre{
     margin: 0;
+    display: inline;
 }
 
 button.copy-button{
@@ -108,7 +109,7 @@ button.copy-button.active{
 
 a{
     text-decoration: none;
-    color: #ffff00;
+    color: #0cf;
 }
 
 span.code-keywords{
@@ -116,9 +117,21 @@ span.code-keywords{
 }
 
 span.code-brackets{
-    color: hotpink;
+    color: turquoise;
 }
 
 span.code-strings{
-    color: red;
+    color: deeppink;
+}
+
+span.code-strings a{
+    color: hotpink;
+}
+
+span.code-strings span.code-brackets{
+    color: hotpink;
+}
+
+span.code-strings span.code-keywords{
+    color: hotpink;
 }
