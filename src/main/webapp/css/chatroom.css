@@ -44,7 +44,7 @@ span.message-body {
     padding-right: 0;
     padding-left: 1em;
     margin-bottom: 0.8em;
-    color: #bbb;
+    color: #ffffff;
     word-wrap: break-word;
     border-left: 2px solid #0cf;
     word-break: break-all;
@@ -62,7 +62,6 @@ textarea#message {
     width: 100%;
     display: block;
     font-size: 13px;
-    font-weight: bold;
     border-radius: 0.4em;
     margin-top: 2em;
     margin-bottom: 1em;
@@ -113,7 +112,7 @@ a{
 }
 
 span.code-keywords{
-    color: white;
+    color: red;
 }
 
 span.code-brackets{
@@ -122,6 +121,10 @@ span.code-brackets{
 
 span.code-strings{
     color: deeppink;
+}
+
+span.code-comments{
+    color: #bbbbbb;
 }
 
 span.code-strings a{
@@ -133,5 +136,9 @@ span.code-strings span.code-brackets{
 }
 
 span.code-strings span.code-keywords{
+    color: hotpink;
+}
+
+span.code-strings span.code-comments{
     color: hotpink;
 }

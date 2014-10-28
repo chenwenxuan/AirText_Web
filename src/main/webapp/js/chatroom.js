@@ -57,8 +57,20 @@ function enable_java_code(text_value) {
     var exp_keywords = /((break|case|catch|char|continue|double|do|else|final|finally|float|for|if|implements|import|instanceof|int|interface|long|private|protected|public|return|short|static|this|throw|throws|transient|try|void|volatile|while)(\[\])*\s)/ig;
     var exp_brackets = /([\(\)\[\]\{\]\}])/ig;
     var exp_strings = /(\".*?[^\\]\")/ig;
+//    var exp_comments = /((\/\/.*$)|(\/\*.*\*\/))/ig;
     return text_value.replace(exp_keywords, "<span class='code-keywords'>$1</span>").replace(exp_brackets, "<span class='code-brackets'>$1</span>").replace(exp_strings, "<span class='code-strings'>$1</span>");
+//    replace(exp_comments,"<span class='code-comments'>$1</span>");
 }
+//
+//function is_code(text_value){
+//    var exp_keywords = /((break|case|catch|char|continue|double|do|else|final|finally|float|for|if|implements|import|instanceof|int|interface|long|private|protected|public|return|short|static|this|throw|throws|transient|try|void|volatile|while)(\[\])*\s)/g;
+//    if (text_value.match(exp_keywords).length >= 3){
+//        return true;
+//    }
+//    else{
+//        return false;
+//    }
+//}
 
 function check_input() {
     var text_value = document.getElementById("message").value;

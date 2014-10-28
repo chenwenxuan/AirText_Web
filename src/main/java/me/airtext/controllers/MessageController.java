@@ -7,6 +7,7 @@ import me.airtext.models.Message;
 import me.airtext.services.IMessageService;
 import me.airtext.services.ISecretService;
 import me.airtext.utils.CookieUtils;
+import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,6 +47,11 @@ public class MessageController {
 
     @RequestMapping(value = "/start-chat", method = RequestMethod.POST)
     public String startChat(@RequestParam(value = "secret",required = true) String secret, ModelMap modelMap) throws Exception{
+        logger.info("in /start-chat : secret = "+secret);
+        if (StringUtils.isBlank(secret)){
+            return "redirect:/";
+        }
+
         if (secretService.secretExists(secret)){
             return "redirect:/airtext/chat/"+secret;
         }
