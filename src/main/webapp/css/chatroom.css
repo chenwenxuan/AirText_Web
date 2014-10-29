@@ -44,16 +44,14 @@ div#message-frame{
     margin-top: 2em;
     padding-top: 2em;
     padding-bottom: 1em;
-    width: 80%;
-    min-width: 1298px;
+    width: 1156px;
     background-color: #353535;
     border-radius: 4px;
     box-shadow: 0 0 8px #fff;
 }
 
 form{
-    width: 80%;
-    min-width: 1298px;
+    width: 1156px;
     margin: auto;
     margin-bottom: 5em;
 }
@@ -104,7 +102,7 @@ button.copy-button.active{
 }
 
 button.copy-button{
-    left: 30px;
+    left: 10px;
     color: #0cf;
     background-color: #444;
     border: 1px solid #0cf;
@@ -119,7 +117,7 @@ button.delete-button:active{
 }
 
 button.delete-button{
-    left: 30px;
+    left: 10px;
     color: deeppink;
     background-color: #444;
     border: 1px solid deeppink;

@@ -1,12 +1,24 @@
 h1 a{
     color: rgb(0, 204, 255);
-    text-shadow: white 0px 0px 1px;
+}
+
+h1{
+    width: 200px;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    margin-top: -160px;
+    margin-left: -100px;
 }
 
 #secret-form{
     width: 500px;
-    margin: auto;
-    margin-top: 12em;
+    height: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -20px;
+    margin-left: -250px;
 }
 
 span#inputs-span{
@@ -15,11 +27,10 @@ span#inputs-span{
 }
 
 input{
-    font-size: 2em;
-    height: 1.6em;
+    font-size: 24px;
+    height: 40px;
     text-align: center;
     border-radius: 0.2em;
-    margin-bottom: 0.4em;
 }
 
 input#secret-input {
@@ -33,4 +44,6 @@ input[type=submit]{
     background-color: black;
     border: 1px solid #0cf;
     color: #0cf;
+    position: relative;
+    bottom: 1px;
 }
