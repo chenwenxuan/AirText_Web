@@ -14,4 +14,5 @@ import java.util.List;
 public interface IMessageService {
     List<Message> getSecretMessagesInRange(String secret, RowBounds rowBounds);
     void insertMessage(Message message);
+    void deleteMessage(Integer messageId);
 }

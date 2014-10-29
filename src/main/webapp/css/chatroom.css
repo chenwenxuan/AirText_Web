@@ -7,18 +7,6 @@ h1 a{
     color: #0cf;
 }
 
-div#message-frame{
-    margin: auto;
-    margin-top: 2em;
-    padding-top: 2em;
-    padding-bottom: 1em;
-    width: 80%;
-    min-width: 1298px;
-    background-color: #353535;
-    border-radius: 4px;
-    box-shadow: 0 0 8px #fff;
-}
-
 div.message{
     width: 100%;
     align-content: flex-start;
@@ -49,6 +37,18 @@ span.message-body {
     border-left: 2px solid #0cf;
     word-break: break-all;
     overflow: auto;
+}
+
+div#message-frame{
+    margin: auto;
+    margin-top: 2em;
+    padding-top: 2em;
+    padding-bottom: 1em;
+    width: 80%;
+    min-width: 1298px;
+    background-color: #353535;
+    border-radius: 4px;
+    box-shadow: 0 0 8px #fff;
 }
 
 form{
@@ -82,20 +82,17 @@ pre{
     display: inline;
 }
 
-button.copy-button{
+button.action-button{
     display: inline-block;
     vertical-align: top;
     position: relative;
-    left: 50px;
-    color: #0cf;
-    background-color: #444;
-    border: 1px solid #0cf;
     border-radius: 2px;
     -webkit-appearance: none;
     width: 60px;
     height: 24px;
     opacity: 0.4;
     cursor: pointer;
+    box-shadow: none;
 }
 
 button.copy-button.hover{
@@ -106,13 +103,37 @@ button.copy-button.active{
     opacity: 0.4;
 }
 
+button.copy-button{
+    left: 30px;
+    color: #0cf;
+    background-color: #444;
+    border: 1px solid #0cf;
+}
+
+button.delete-button:hover{
+    opacity: 1.0;
+}
+
+button.delete-button:active{
+    opacity: 0.6;
+}
+
+button.delete-button{
+    left: 30px;
+    color: deeppink;
+    background-color: #444;
+    border: 1px solid deeppink;
+    opacity: 0.6;
+}
+
 a{
     text-decoration: none;
     color: #0cf;
 }
 
 span.code-keywords{
-    color: red;
+    color: crimson;
+    font-weight: bold;
 }
 
 span.code-brackets{
@@ -141,4 +162,29 @@ span.code-strings span.code-keywords{
 
 span.code-strings span.code-comments{
     color: hotpink;
+}
+
+.hint-div{
+    background-color: #000;
+    border-radius: 4px;
+    border: 1px solid hotpink;
+    position: fixed;
+    left: 50%;
+    top:50%;
+    min-width: 240px;
+    height: 40px;
+    margin-top: -30px;
+    margin-left: -80px;
+}
+
+.hint-span{
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 240px;
+    height: 14px;
+    margin-top: -7px;
+    text-align: center;
+    color: #00ccff;
+    font-size: 14px;
 }

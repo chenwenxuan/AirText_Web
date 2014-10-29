@@ -4,6 +4,7 @@
 package me.airtext.controllers;
 
 import me.airtext.models.Message;
+import me.airtext.models.ResponseObject;
 import me.airtext.services.IMessageService;
 import me.airtext.services.ISecretService;
 import me.airtext.utils.CookieUtils;
@@ -20,6 +21,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -75,6 +77,17 @@ public class MessageController {
             }
             httpServletResponse.addCookie(cookie);
 
+            //添加一个时间戳，删除message的时候作为凭证
+            Cookie cookieMillis = CookieUtils.getCookieWithName(request,"page_time");
+            if (cookieMillis == null){
+                Date date = new Date();
+                long time = date.getTime();
+                String millis = ""+time;
+                cookieMillis = new Cookie("page_time",millis);
+                cookieMillis.setPath("/airtext");
+            }
+            httpServletResponse.addCookie(cookieMillis);
+
             if (begin == null || begin < 0){
                 begin = new Integer(0);
             }
@@ -102,5 +115,15 @@ public class MessageController {
         Message message = new Message(secret,messageText,ipString);
         messageService.insertMessage(message);
         return "redirect:/airtext/chat/"+secret;
+    }
+
+    @RequestMapping("/delete")
+    @ResponseBody
+    public ResponseObject deleteMessage(HttpServletRequest httpServletRequest, @CookieValue("page_time") String cookieMillis, @RequestParam("message_id") Integer messageId, @RequestParam("millis") String paramMillis){
+        ResponseObject responseObject = new ResponseObject();
+        messageService.deleteMessage(messageId);
+        responseObject.setStatus(200);
+        responseObject.setOperationInfo("删除成功");
+        return responseObject;
     }
 }

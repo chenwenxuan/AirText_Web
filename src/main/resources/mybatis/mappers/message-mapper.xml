@@ -15,7 +15,7 @@
         FROM
           message_board
         WHERE
-          secret=#{secret}
+          secret=#{secret} AND deleted=0
     </select>
 
     <insert id="insertMessage" parameterType="me.airtext.models.Message">
@@ -25,4 +25,7 @@
         (#{secret},#{message},now(),#{sourceIp})
     </insert>
 
+    <update id="deleteMessage" parameterType="java.lang.Integer">
+        UPDATE message_board SET deleted=1 WHERE id=#{messageId}
+    </update>
 </mapper>

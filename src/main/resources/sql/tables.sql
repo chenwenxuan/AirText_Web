@@ -17,3 +17,5 @@ CREATE TABLE IF NOT EXISTS `secrets` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `uniq_secret` (`secret`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='暗号表';
+
+ALTER TABLE message_board ADD deleted INT(3) DEFAULT 0 COMMENT='删除标记';

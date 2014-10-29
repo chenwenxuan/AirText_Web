@@ -28,55 +28,86 @@ $(document).ready(function () {
             clip.setCSSEffects(true);
 
             clip.addEventListener("complete", function (client) {
-                alert("复制成功，请用Ctrl+V粘贴。");
+                show_hint("已复制内容至剪贴板", 1);
             })
 
             clipArray.push(clip);
         }
     )
+
+    $('.delete-button').click(function () {
+        var confirm = window.confirm("确认删除此条记录？");
+        if (!confirm) {
+            return;
+        }
+        var num_id = $(event.target).attr("id").replace("delete_button_","");
+
+        var millis = getCookie("page_time");
+        if(millis == null){
+            millis = "0";
+        }
+        var request_url = "/airtext/delete/?message_id="+num_id+"&millis="+millis;
+        $.ajax({
+            url:request_url,
+            success:function(data){
+                if(data.errorMsg == null || data.errorMsg.length == 0){
+                    console.log(JSON.stringify(data));
+                    show_hint("删除成功",1);
+                    $('#message_frame_'+num_id).remove();
+                }
+            },
+            dataType:null
+        })
+    })
 });
-//
-//        String.prototype.replaceAll = function (reallyDo, replaceWith, ignoreCase) {
-//            if (!RegExp.prototype.isPrototypeOf(reallyDo)) {
-//                return this.replace(new RegExp(reallyDo, (ignoreCase ? "gi" : "g")), replaceWith);
-//            } else {
-//                return this.replace(reallyDo, replaceWith);
-//            }
-//        }
+
+function getCookie(name) {
+    var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+
+    if (arr = document.cookie.match(reg))
+
+        return unescape(arr[2]);
+    else
+        return null;
+}
+
+var hint_timeout;
+
+function show_hint(hint, seconds) {
+    clearTimeout(hint_timeout);
+    $('.hint-div').remove();
+    hint_ele = $("<div class='hint-div'><span class='hint-span'>" + hint + "</span></div>");
+    $("body").append(hint_ele);
+    hint_timeout = setTimeout("$('.hint-div').remove()", seconds * 1000);
+}
 
 function enable_url(text_value) {
     var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
     text_value = text_value.replace(exp, "<a href='$1'>$1</a>");
-
-//            var exp_2 = /([^(https?|ftp|file):\/\/]([-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|]))/ig;
-//            text_value = text_value.replace(exp, "<a href='http://$1'>$1</a>")
     return text_value;
 }
 
 function enable_java_code(text_value) {
     var exp_keywords = /((break|case|catch|char|continue|double|do|else|final|finally|float|for|if|implements|import|instanceof|int|interface|long|private|protected|public|return|short|static|this|throw|throws|transient|try|void|volatile|while)(\[\])*\s)/ig;
+    text_value = text_value.replace(exp_keywords, "<span class='code-keywords'>$1</span>");
     var exp_brackets = /([\(\)\[\]\{\]\}])/ig;
+    text_value = text_value.replace(exp_brackets, "<span class='code-brackets'>$1</span>");
     var exp_strings = /(\".*?[^\\]\")/ig;
-//    var exp_comments = /((\/\/.*$)|(\/\*.*\*\/))/ig;
-    return text_value.replace(exp_keywords, "<span class='code-keywords'>$1</span>").replace(exp_brackets, "<span class='code-brackets'>$1</span>").replace(exp_strings, "<span class='code-strings'>$1</span>");
-//    replace(exp_comments,"<span class='code-comments'>$1</span>");
+    text_value = text_value.replace(exp_strings, "<span class='code-strings'>$1</span>");
+    return text_value;
 }
-//
-//function is_code(text_value){
-//    var exp_keywords = /((break|case|catch|char|continue|double|do|else|final|finally|float|for|if|implements|import|instanceof|int|interface|long|private|protected|public|return|short|static|this|throw|throws|transient|try|void|volatile|while)(\[\])*\s)/g;
-//    if (text_value.match(exp_keywords).length >= 3){
-//        return true;
-//    }
-//    else{
-//        return false;
-//    }
-//}
+
+function is_text_code(text_value) {
+    var exp_keywords = /((break|case|catch|char|continue|double|do|else|final|finally|float|for|if|implements|import|instanceof|int|interface|long|private|protected|public|return|short|static|this|throw|throws|transient|try|void|volatile|while)(\[\])*\s)/ig;
+    text_value.match(exp_keywords);
+
+}
 
 function check_input() {
     var text_value = document.getElementById("message").value;
     var emptyPattern = new RegExp("^\\s*$");
     if (emptyPattern.test(text_value)) {
-        alert("输入不能为空");
+        show_hint("输入不能为空", 1);
         return false;
     }
     else {
