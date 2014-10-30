@@ -2,6 +2,7 @@ ZeroClipboard.setMoviePath("../../swf/ZeroClipboard.swf");
 clipArray = new Array();
 
 $(window).resize(function () {
+    refresh_message_width();
     for (i in clipArray) {
         clip = clipArray[i];
         clip.reposition();
@@ -9,6 +10,8 @@ $(window).resize(function () {
 })
 
 $(document).ready(function () {
+    refresh_message_width();
+
     $('pre').each(
         function (index, item) {
             item.innerHTML = enable_java_code(item.innerHTML);
@@ -60,6 +63,12 @@ $(document).ready(function () {
         })
     })
 });
+
+function refresh_message_width(){
+    var message_frame_width = $("#message-frame").css("width");
+    var message_body_width = (parseInt(message_frame_width) - 370) + "px";
+    $(".message-body").css({"width":message_body_width});
+}
 
 function getCookie(name) {
     var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");

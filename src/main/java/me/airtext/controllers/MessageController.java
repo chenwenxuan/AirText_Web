@@ -21,6 +21,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 
@@ -64,15 +66,16 @@ public class MessageController {
     }
 
     @RequestMapping(value = "/chat/{secret}")
-    public String enterChat(HttpServletRequest request, @PathVariable(value = "secret") String secret,@RequestParam(value = "begin",required = false) Integer begin,@RequestParam(value = "length",required = false) Integer length, ModelMap modelMap, HttpServletResponse httpServletResponse){
+    public String enterChat(HttpServletRequest request, @PathVariable(value = "secret") String secret,@RequestParam(value = "begin",required = false) Integer begin,@RequestParam(value = "length",required = false) Integer length, ModelMap modelMap, HttpServletResponse httpServletResponse) throws Exception{
         if (secretService.secretExists(secret)) {
             Cookie cookie = CookieUtils.getCookieWithName(request, "secret");
+            String cookieSecret = URLEncoder.encode(secret,"UTF-8");
             if (cookie == null){
-                cookie = new Cookie("secret",secret);
+                cookie = new Cookie("secret",cookieSecret);
                 cookie.setPath("/airtext");
             }
             else {
-                cookie.setValue(secret);
+                cookie.setValue(cookieSecret);
                 cookie.setPath("/airtext");
             }
             httpServletResponse.addCookie(cookie);
@@ -92,11 +95,14 @@ public class MessageController {
                 begin = new Integer(0);
             }
             if (length == null || length < 0 || length > 100){
-                length = new Integer(100);
+                length = new Integer(1000);
             }
 
             List<Message> messageList = messageService.getSecretMessagesInRange(secret, new RowBounds(begin, length));
             modelMap.addAttribute("messages",messageList);
+            if (messageList.size() == 0){
+                modelMap.addAttribute("isEmpty","true");
+            }
             return "chatroom";
         }
         else {
@@ -110,7 +116,8 @@ public class MessageController {
     }
 
     @RequestMapping("/add-message")
-    public String addMessage(HttpServletRequest httpServletRequest, @CookieValue("secret") String secret, @RequestParam(value = "message",required = true) String messageText){
+    public String addMessage(HttpServletRequest httpServletRequest, @CookieValue("secret") String secret, @RequestParam(value = "message",required = true) String messageText) throws Exception{
+        secret = URLDecoder.decode(secret,"UTF-8");
         String ipString = httpServletRequest.getRemoteAddr();
         Message message = new Message(secret,messageText,ipString);
         messageService.insertMessage(message);

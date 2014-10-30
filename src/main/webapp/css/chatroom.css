@@ -15,7 +15,7 @@ div.message{
 span.message-time {
     display: inline-block;
     text-align: right;
-    width: 20%;
+    width: 168px;
     position: relative;
     top: 3px;
     color: #0cf;
@@ -44,14 +44,16 @@ div#message-frame{
     margin-top: 2em;
     padding-top: 2em;
     padding-bottom: 1em;
-    width: 1156px;
+    width: 80%;
+    min-width: 640px;
     background-color: #353535;
     border-radius: 4px;
     box-shadow: 0 0 8px #fff;
 }
 
 form{
-    width: 1156px;
+    width: 80%;
+    min-width: 640px;
     margin: auto;
     margin-bottom: 5em;
 }
@@ -78,6 +80,15 @@ input[type="submit"] {
 pre{
     margin: 0;
     display: inline;
+}
+
+span.buttons{
+    display: inline-block;
+    vertical-align: top;
+    width: 130px;
+    float: right;
+    position: relative;
+    right: 20px;
 }
 
 button.action-button{

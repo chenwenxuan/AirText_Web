@@ -25,5 +25,7 @@ public class TestController {
     public String insertSecret(@PathVariable("secret") String secret){
         secretService.updateSecret(secret);
         return "插入已执行";
+
+
     }
 }
