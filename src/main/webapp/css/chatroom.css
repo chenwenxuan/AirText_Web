@@ -226,8 +226,8 @@
         display: block;
         font-size: 0.6em;
         width: 96%;
-        height: 1.6em;
-        padding-top: 0.3em;
+        height: 2em;
+        padding-top: 0.8em;
         position: relative;
         color: gray;
         vertical-align: top;
@@ -240,19 +240,16 @@
 
     span.message-body {
         display: block;
-        width: 64%;
+        width: 92%;
         font-family: 'Helvetica Neue',Helvetica,Arial,Sans-serif;
         line-height: 1.7;
         font-size: 13px;
-        padding-right: 0;
-        padding-left: 1em;
-        padding-top: 0.4em;
-        padding-bottom: 0.4em;
-        padding: 0.4em 0 0.4em 1em;
+        padding: 0.4em 4%;
         color: #666;
         word-wrap: break-word;
         word-break: break-all;
         overflow: auto;
+
     }
 
     div#message-frame{

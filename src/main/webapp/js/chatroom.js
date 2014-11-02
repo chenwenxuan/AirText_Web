@@ -1,6 +1,8 @@
 ZeroClipboard.setMoviePath("../../swf/ZeroClipboard.swf");
 clipArray = new Array();
 
+var screen_width = parseInt(screen.width);
+
 $(window).resize(function () {
     refresh_message_width();
     for (i in clipArray) {
@@ -18,25 +20,28 @@ $(document).ready(function () {
             item.innerHTML = enable_url(item.innerHTML);
         });
 
-    $('.copy-button').each(
-        function (index, item) {
-            var _id = item.id.replace("copy_button_", "");
-            var span_id = "message_" + _id;
-            var text_value = document.getElementById(span_id).innerText;
+    if(screen_width > 1000){
+        $('.copy-button').each(
+            function (index, item) {
+                var _id = item.id.replace("copy_button_", "");
+                var span_id = "message_" + _id;
+                var text_value = document.getElementById(span_id).innerText;
 
-            var clip = new ZeroClipboard.Client();
-            clip.setHandCursor(true);
-            clip.setText(text_value);
-            clip.glue(item.id);
-            clip.setCSSEffects(true);
+                var clip = new ZeroClipboard.Client();
+                clip.setHandCursor(true);
+                clip.setText(text_value);
+                clip.glue(item.id);
+                clip.setCSSEffects(true);
 
-            clip.addEventListener("complete", function (client) {
-                show_hint("已复制内容至剪贴板", 1);
-            })
+                clip.addEventListener("complete", function (client) {
+                    show_hint("已复制内容至剪贴板", 1);
+                })
 
-            clipArray.push(clip);
-        }
-    )
+                clipArray.push(clip);
+            }
+        )
+    }
+
 
     $('.delete-button').click(function () {
         var confirm = window.confirm("确认删除此条记录？");
@@ -65,6 +70,9 @@ $(document).ready(function () {
 });
 
 function refresh_message_width(){
+    if(screen_width < 1000){
+        return;
+    }
     var message_frame_width = $("#message-frame").css("width");
     var message_body_width = (parseInt(message_frame_width) - 370) + "px";
     $(".message-body").css({"width":message_body_width});
